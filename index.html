@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>餐費計算器</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>好婆婆餐費計算器</h1>
+            <div class="form-group">
+                <label for="option">請選擇收費方式：</label>
+                <select id="option" class="form-control">
+                    <option value="4">請選擇收費方式</option>
+                    <option value="1">1.全程醫院訂餐醫院結帳</option>
+                    <option value="2">2.醫院加住家(有簽約或臨訂)</option>
+                    <option value="3">3.全程跟好婆婆訂餐(簽約或臨訂)</option>
+                </select>
+            </div>
+            
+            <div id="hospitalSelection" class="form-group" style="display:none;">
+                <label for="hospital">請選擇醫院(有簽約)：</label>
+                <select id="hospital" class="form-control"></select>
+            </div>
+            
+            <div id="activitySelection" class="form-group" style="display:none;">
+                <label for="activity">請選擇方案：</label>
+                <select id="activity" class="form-control"></select>
+            </div>
+            
+            <div id="hospitalMeals" class="form-group" style="display:none;">
+                <h3>請輸入醫院餐點數量：</h3>
+                <div class="input-group">
+                    <input type="number" id="hospitalBreakfast" class="form-control" placeholder="早餐數量" min="0">
+                    <input type="number" id="hospitalLunch" class="form-control" placeholder="午餐數量" min="0">
+                    <input type="number" id="hospitalDinner" class="form-control" placeholder="晚餐數量" min="0">
+                </div>
+            </div>
+            
+            <div id="ourMeals" class="form-group" style="display:none;">
+                <h3>請輸入住家的餐點數量：</h3>
+                <div class="input-group">
+                    <input type="number" id="ourBreakfast" class="form-control" placeholder="早餐數量" min="0">
+                    <input type="number" id="ourLunch" class="form-control" placeholder="午餐數量" min="0">
+                    <input type="number" id="ourDinner" class="form-control" placeholder="晚餐數量" min="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="refund">退費金額（如有）：</label>
+                <input type="number" id="refund" class="del-form-control" placeholder="退費金額" min="0">
+            </div>
+            
+            <div class="form-group">
+                <label for="discount">折扣金額（如有）：</label>
+                <input type="number" id="discount" class="del-form-control" placeholder="折扣金額" min="0">
+            </div>
+            
+            
+            <button id="calculate" class="btn">計算總費用</button>
+            
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
