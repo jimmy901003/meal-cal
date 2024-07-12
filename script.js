@@ -29,7 +29,7 @@ function calculateCost(prices, meals) {
     }, 0);
 }
 
-function calculateTotalCost(option, hospital, activity, hospitalMeals, ourMeals, refund, discount, deliveryChecked) {
+function calculateTotalCost(option, hospital, activity, hospitalMeals, ourMeals, refund, discount, deliveryChecked, deliveryDays) {
     let total = 0;
     let originalCost = 0;
 
@@ -42,7 +42,7 @@ function calculateTotalCost(option, hospital, activity, hospitalMeals, ourMeals,
     
     let deliveryCost = 0;
     if (deliveryChecked) {
-        deliveryCost = 120;
+        deliveryCost = 120 * deliveryDays;
     }
     
     total = originalCost + deliveryCost;
@@ -65,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const hospitalMeals = document.getElementById('hospitalMeals');
     const ourMeals = document.getElementById('ourMeals');
     const deliveryCheckbox = document.getElementById('delivery');
+    const deliveryDaysInput = document.getElementById('deliveryDays');
+    const deliveryDaysContainer = document.getElementById('deliveryDaysContainer');
     const calculateButton = document.getElementById('calculate');
     const resultDiv = document.getElementById('result');
     const deliveryCostSpan = document.getElementById('deliveryCost');
@@ -89,6 +91,10 @@ document.addEventListener('DOMContentLoaded', function() {
         ourMeals.style.display = selectedOption === "2" || selectedOption === "3" ? 'block' : 'none';
     });
 
+    deliveryCheckbox.addEventListener('change', function() {
+        deliveryDaysContainer.style.display = this.checked ? 'block' : 'none';
+    });
+
     calculateButton.addEventListener('click', function() {
         const option = optionSelect.value;
         const hospital = hospitalSelect.value;
@@ -108,8 +114,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const discount = parseFloat(document.getElementById('discount').value) || 0;
 
         const deliveryChecked = deliveryCheckbox.checked;
+        const deliveryDays = deliveryChecked ? parseInt(deliveryDaysInput.value) || 0 : 0;
 
-        const { originalCost, deliveryCost, totalCost } = calculateTotalCost(option, hospital, activity, hospitalMealsObj, ourMealsObj, refund, discount, deliveryChecked);
+        const { originalCost, deliveryCost, totalCost } = calculateTotalCost(option, hospital, activity, hospitalMealsObj, ourMealsObj, refund, discount, deliveryChecked, deliveryDays);
         
         let resultHTML = `<h3>計算結果</h3>`;
         
@@ -121,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resultHTML += `折扣金額：${discount} 元<br>`;
         }
         if (deliveryChecked) {
-            resultHTML += `宅配費用：${deliveryCost} 元<br>`;
+            resultHTML += `宅配費用：${deliveryCost} 元 (${deliveryDays} 天)<br>`;
         }
         resultHTML += `最終費用：<span style="color: #e74c3c; font-size: 1.2em;">${totalCost}</span> 元`;
         

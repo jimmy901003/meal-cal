@@ -3,7 +3,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #FFC0CB 0%, #FF69B4 100%); /* 粉色漸層 */
+    background: linear-gradient(135deg, #FFC0CB 0%, #FF69B4 100%);
     color: #333;
     min-height: 100vh;
     display: flex;
@@ -90,7 +90,7 @@ label {
     display: block;
     width: 100%;
     padding: 1.2rem;
-    background: linear-gradient(45deg, #FF69B4, #FFC0CB); /* 按鈕顏色調整為粉色 */
+    background: linear-gradient(45deg, #FF69B4, #FFC0CB);
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -139,6 +139,34 @@ label {
     margin-left: 0.5rem;
 }
 
+/* 新增：宅配天數輸入框樣式 */
+.delivery-days-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.delivery-days-group label {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.delivery-days-input {
+    width: 100px;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.delivery-days-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.25);
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 1.5rem;
@@ -161,5 +189,14 @@ label {
     .btn {
         padding: 1rem;
         font-size: 1.1rem;
+    }
+
+    .delivery-days-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .delivery-days-input {
+        width: 100%;
     }
 }
