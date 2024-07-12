@@ -132,6 +132,13 @@ label {
     transform: scale(1.02);
 }
 
+/* 新增的部分：勾選框大小和位置調整 */
+.form-check-input {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-left: 0.5rem;
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 1.5rem;
